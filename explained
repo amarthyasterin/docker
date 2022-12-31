@@ -1,0 +1,119 @@
+application
+
+app is service or task which conrain multiple micro services to run the main service
+php,css, javascript, mysql connectivity plugin
+
+docker 
+docker is software plagtform that simplfy the process of building runnuing managing and distributing app
+
+containerization
+
+is the packaging together of software code with all its necessary components like libiriers, frame work and other dependency so that they are isolated in their own container
+
+reason for containerization
+merit
+compactibility
+since docker contrainer which working on top of docker engine ther is no communication b/w app and os kernal hence regardless of any version/appl 
+it will communicate with docker engine seamlessly docker engine will translate this on appropriate
+kernal lang so this help to diminish
+
+. easy to migrate
+on docker we can gather all the dependency for application later we can pack into a single box or container and this contain necessary packages
+to run and perform that app
+
+.very fast 
+container wont use individual os hence typically call it as light weight boxes it make very expedited bootup
+
+ease to manage
+
+vm
+heavu weight
+seprate os
+fullly isolated and more secure
+hardware level viru
+
+main componenets of docker
+client client command linr interface
+docker host
+
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker rmi $(docker images)
+docker exec-it 5b bash
+
+to set a host name
+vm default local host ip - 127.0.0.1
+containers local host ip - 172.17.0.0
+
+docker run -d --name=container -h=mycontainer ubuntu sleep 100
+docker inspect 
+
+mkdir /jenkins
+docker run -d -p 1001:8080 -v /jenkins:/var/jenkins_home
+
+docker build . -t image1
+login docker hub
+docker login
+docker push 
+docker image tag image1 ashiq/imgage100
+docker push ashiqumathur/image100
+
+***************
+install docker 
+install git
+docker run -d -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=ecomuser -e MYSQL_PASSWORD=ecompassword -e MYSQL
+-DATABASE=ecomdb -h hostname --name=database mysql
+
+docker run -d -p 1200:80 --link database:db ecommerce
+
+mysql -u ashiq -p
+show databases
+
+ ls
+   42  docker build . -t ecomimage
+   43  vi dockerfile 
+   44  docker build . -t ecomimage
+   45  ls
+   46  docker images
+   47  docker run -d -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=ecomuser -e MYSQL_PASSWORD=ecompassword -e MYSQL
+   48  docker ps
+   49  vi index.php
+   50  docker run -d -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=ecomuser -e MYSQL_PASSWORD=ecompassword -e MYSQL
+   51  docker run -d -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=ecomuser -e MYSQL_PASSWORD=ecompassword -e MYSQL_DATABASE=ecomdb -h hostname --name=database mysql
+   52  docker ps
+   53  docker exec -it 173 bash
+   54  docker run -d -p 1200:80 --link database:db ecommerce
+   55  docker images
+   56  docker run -d -p 1200:80 --link database:db ecomimage
+   57  docker ps
+   58  docker exec -it 17 bash
+
+docker compose
+
+docker compose versions
+version 1
+no way to specify specific network
+nedd to follow order squence eg:database should be create first
+
+version 2
+add two more parameter to identify version
+version and services
+it will create a bridge network automatically and link automatically
+we can add depends 0n to determine and stsrt containers to achieve dependecy
+
+version 3
+added lot of feture such as docker swarm
+
+version: "3"
+services:
+  hostname:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ashiq
+      MYSQL_PASSWORD: ashiqpassword
+      MYSQL_DATABASE: ashiqdb
+  app:
+    build: .
+    ports:
+      - 1000:80
